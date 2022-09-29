@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EmployeeService from '../services/EmployeeService'
 
 export default class CreateEmployeeComponent extends Component {
     constructor(props) {
@@ -21,6 +22,10 @@ export default class CreateEmployeeComponent extends Component {
         e.preventDefault();
         let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
         console.log('employee => ' + JSON.stringify(employee));
+
+        EmployeeService.createEmployee(employee).then(res => {
+            this.props.history.push('/employees');
+        });
     }
 
     changeFirstNameHandle=(event) =>{
@@ -66,7 +71,7 @@ export default class CreateEmployeeComponent extends Component {
                             </div>
 
                             <button className="btn btn-success" onClick={this.saveEmployee}>Save</button>
-                            <button className="btn btn-danger" onClick={this.cancel.bind} style={{marginLeft: "10px"}}>Cancel</button>
+                            <button className="btn btn-danger" onClick={this.cancel} style={{marginLeft: "10px"}}>Cancel</button>
                         </form>
                     </div>
                 </div>
