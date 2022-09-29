@@ -19,7 +19,8 @@ export default class CreateEmployeeComponent extends Component {
 
     saveEmployee = (e) => {
         e.preventDefault();
-        let employee = {firstName: this.state.firstName,}
+        let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
+        console.log('employee => ' + JSON.stringify(employee));
     }
 
     changeFirstNameHandle=(event) =>{
@@ -32,6 +33,10 @@ export default class CreateEmployeeComponent extends Component {
 
     changeEmailIdHandle=(event) =>{
         this.setState({emailId: event.target.value});
+    }
+
+    cancel(){
+        this.props.history.push('/employees');
     }
 
 
@@ -61,7 +66,7 @@ export default class CreateEmployeeComponent extends Component {
                             </div>
 
                             <button className="btn btn-success" onClick={this.saveEmployee}>Save</button>
-                            <button className="btn btn-danger" onClick={this.cancel} style={{marginLeft: "10px"}}>Cancel</button>
+                            <button className="btn btn-danger" onClick={this.cancel.bind} style={{marginLeft: "10px"}}>Cancel</button>
                         </form>
                     </div>
                 </div>
